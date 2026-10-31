@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://127.0.0.1:5500/login%20page/gymmate.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymMate Fitness</title>
+
+<link href="./GymMate Fitness_files/css2" rel="stylesheet">
+
+<style>
+:root {
+    --green:#a3ff3f;
+    --bg:#080d0c;
+    --card:#111a17;
+    --text:#ffffff;
+    --muted:#a5b1aa;
+    --border:#26342c;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,sans-serif;
+    scroll-behavior:smooth;
+}
+
+body {
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+}
+
+body.light {
+    --bg:#f2f5f1;
+    --card:#ffffff;
+    --text:#142018;
+    --muted:#657267;
+    --border:#dce5dc;
+}
+
+button,a {cursor:pointer;}
+a {text-decoration:none;color:inherit;}
+
+button {
+    font-weight:700;
+}
+
+header {
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo {
+    font-size:25px;
+    font-weight:900;
+}
+
+.logo span {color:var(--green);}
+
+nav {
+    display:flex;
+    gap:20px;
+}
+
+nav a {
+    color:var(--muted);
+    font-size:12px;
+    font-weight:600;
+}
+
+nav a:hover {color:var(--green);}
+
+.nav-actions {
+    display:flex;
+    gap:10px;
+}
+
+.btn {
+    background:var(--green);
+    color:#111;
+    border:0;
+    padding:12px 19px;
+    border-radius:7px;
+    font-weight:800;
+    transition:.3s;
+}
+
+.btn:hover {
+    transform:translateY(-3px);
+    box-shadow:0 5px 20px #a3ff3f40;
+}
+
+.theme-btn {
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--text);
+    border-radius:7px;
+    padding:10px;
+}
+
+.menu {
+    display:none;
+    background:transparent;
+    border:0;
+    color:var(--text);
+    font-size:24px;
+}
+
+.hero {
+    min-height:560px;
+    display:flex;
+    align-items:center;
+    padding:70px 8%;
+    background:
+    linear-gradient(90deg,#030807 5%,#030807df 38%,#03080722),
+    url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600')
+    center/cover;
+}
+
+.hero-content {max-width:620px;}
+
+.tag {
+    color:var(--green);
+    font-size:12px;
+    letter-spacing:3px;
+    font-weight:800;
+}
+
+.hero h1 {
+    font-size:clamp(42px,7vw,76px);
+    line-height:1.08;
+    margin:25px 0;
+    font-weight:900;
+}
+
+.hero h1 span {color:var(--green);}
+
+.hero p {
+    color:#c6d0ca;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.hero-buttons {
+    display:flex;
+    gap:15px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.outline {
+    background:transparent;
+    border:1px solid white;
+    color:white;
+    padding:12px 20px;
+    border-radius:7px;
+}
+
+.stats {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    background:var(--card);
+    border-block:1px solid var(--border);
+    padding:25px 6%;
+    text-align:center;
+    gap:15px;
+}
+
+.stat h2 {
+    color:var(--green);
+    font-size:30px;
+}
+
+.stat p {
+    color:var(--muted);
+    font-size:12px;
+    margin-top:5px;
+}
+
+section {padding:75px 7%;}
+
+.section-head {margin-bottom:35px;}
+
+.section-head small {
+    color:var(--green);
+    letter-spacing:3px;
+    font-weight:800;
+}
+
+.section-head h2 {
+    font-size:32px;
+    margin-top:12px;
+}
+
+.section-head h2 span {color:var(--green);}
+
+.section-head p {
+    color:var(--muted);
+    font-size:13px;
+    margin-top:10px;
+}
+
+.workout-grid,.trainer-grid,.price-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.card:hover {
+    transform:translateY(-7px);
+    border-color:var(--green);
+}
+
+.card img {
+    width:100%;
+    height:210px;
+    object-fit:cover;
+}
+
+.card-body {padding:20px;}
+
+.card-body h3 {
+    font-size:17px;
+    margin-bottom:10px;
+}
+
+.card-body p {
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.card-body button {margin-top:18px;}
+
+.label {
+    display:inline-block;
+    color:var(--green);
+    background:#a3ff3f18;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:10px;
+    margin-bottom:13px;
+}
+
+.dashboard {background:var(--card);}
+
+.dashboard-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.panel {
+    background:var(--bg);
+    border:1px solid var(--border);
+    padding:23px;
+    border-radius:12px;
+    min-width:0;
+}
+
+.panel h3 {
+    margin-bottom:22px;
+    font-size:15px;
+}
+
+.panel h3 span {color:var(--green);}
+
+.timer {text-align:center;}
+
+.timer h2 {
+    font-size:55px;
+    color:var(--green);
+    margin:20px 0;
+}
+
+.timer button {margin:4px;}
+
+input {
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:13px;
+    border-radius:7px;
+    width:100%;
+    outline:none;
+    margin:9px 0 15px;
+}
+
+input:focus {border-color:var(--green);}
+
+label {
+    font-size:12px;
+    color:var(--muted);
+}
+
+.habit {
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin:18px 0;
+}
+
+.habit input {
+    width:17px;
+    accent-color:var(--green);
+    margin:0;
+}
+
+.habit label {
+    flex:1;
+    color:var(--text);
+}
+
+.water-count {
+    font-size:35px;
+    color:var(--green);
+    text-align:center;
+    margin:20px;
+}
+
+.water-buttons {
+    display:flex;
+    gap:8px;
+}
+
+.water-buttons button {flex:1;}
+
+.activity-image {
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.activity-details {
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    color:var(--muted);
+    font-size:11px;
+    margin:15px 0;
+}
+
+.activity-actions {
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.activity-actions button {
+    flex:1;
+    min-width:90px;
+}
+
+.activity-status {
+    font-size:12px;
+    color:var(--green);
+    margin:10px 0;
+}
+
+.price-card {
+    text-align:center;
+    padding:30px 20px;
+}
+
+.price {
+    font-size:38px;
+    font-weight:900;
+    color:var(--green);
+    margin:20px 0;
+}
+
+.price-card ul {
+    list-style:none;
+    color:var(--muted);
+    font-size:13px;
+    line-height:2.8;
+}
+
+.price-card.featured {
+    border:1px solid var(--green);
+    box-shadow:0 0 25px #a3ff3f12;
+}
+
+.trainer-grid .card img {height:270px;}
+
+.testimonials {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.review {
+    padding:25px;
+    border:1px solid var(--border);
+    background:var(--card);
+    border-radius:12px;
+}
+
+.review p {
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+    margin:15px 0;
+}
+
+.stars {color:var(--green);}
+
+.faq-item {
+    background:var(--card);
+    border:1px solid var(--border);
+    margin:12px 0;
+    border-radius:8px;
+    overflow:hidden;
+}
+
+.faq-question {
+    padding:20px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.faq-answer {
+    display:none;
+    padding:0 20px 20px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+.faq-item.open .faq-answer {display:block;}
+
+footer {
+    padding:55px 7%;
+    background:#050907;
+    color:#aaa;
+}
+
+.footer-grid {
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+}
+
+footer h3 {
+    color:white;
+    margin-bottom:15px;
+}
+
+footer p,footer a {
+    font-size:12px;
+    line-height:2.3;
+    display:block;
+}
+
+.copyright {
+    border-top:1px solid #29332d;
+    margin-top:30px;
+    padding-top:20px;
+    text-align:center;
+    font-size:12px;
+}
+
+.modal {
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:#000c;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal-content {
+    background:var(--card);
+    border:1px solid var(--border);
+    width:100%;
+    max-width:420px;
+    padding:30px;
+    border-radius:15px;
+    position:relative;
+}
+
+.close {
+    position:absolute;
+    right:18px;
+    top:15px;
+    border:0;
+    background:none;
+    color:var(--text);
+    font-size:25px;
+}
+
+.modal-content h2 {margin:15px 0;}
+
+.modal-content p {
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:15px;
+}
+
+.modal-content .btn {
+    width:100%;
+    margin-top:10px;
+}
+
+.switch {
+    color:var(--green);
+    cursor:pointer;
+    text-align:center;
+    margin-top:15px;
+}
+
+@media(max-width:950px) {
+    nav {gap:12px;}
+    nav a {font-size:10px;}
+    .dashboard-grid {grid-template-columns:1fr 1fr;}
+}
+
+@media(max-width:650px) {
+    header {flex-wrap:wrap;}
+    nav {
+        display:none;
+        width:100%;
+        flex-direction:column;
+        padding:15px;
+    }
+    nav.show {display:flex;}
+    .menu {display:block;}
+    .nav-actions .btn {padding:9px;font-size:11px;}
+    .stats {grid-template-columns:1fr 1fr;}
+    .workout-grid,.trainer-grid,.price-grid,
+    .dashboard-grid,.testimonials,.footer-grid {
+        grid-template-columns:1fr;
+    }
+    section {padding:50px 5%;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⚡ Gym<span>Mate</span></div>
+
+    <nav id="nav">
+        <a href="http://127.0.0.1:5500/login%20page/gymmate.html#home">Home</a>
+        <a href="http://127.0.0.1:5500/login%20page/gymmate.html#workouts">Workouts</a>
+        <a href="http://127.0.0.1:5500/login%20page/gymmate.html#dashboard">Dashboard</a>
+        <a href="http://127.0.0.1:5500/login%20page/gymmate.html#trainers">Trainers</a>
+        <a href="http://127.0.0.1:5500/login%20page/gymmate.html#pricing">Pricing</a>
+        <a href="http://127.0.0.1:5500/login%20page/gymmate.html#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+        <button class="theme-btn" onclick="toggleTheme()">☀️</button>
+        <button class="btn" onclick="openModal()">Login / Join</button>
+        <button class="menu" onclick="toggleMenu()">☰</button>
+    </div>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="tag">YOUR FITNESS JOURNEY STARTS HERE</div>
+        <h1>Build a Healthier,<br><span>Stronger</span> You.</h1>
+        <p>Your fitness. Your goals. Your journey. Explore workouts, build healthy habits and track your progress with GymMate.</p>
+        <div class="hero-buttons">
+            <a href="http://127.0.0.1:5500/login%20page/gymmate.html#workouts" class="btn">Explore Workouts →</a>
+            <a href="http://127.0.0.1:5500/login%20page/gymmate.html#dashboard" class="outline">My Dashboard</a>
+        </div>
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat"><h2>20+</h2><p>Workout Programs</p></div>
+    <div class="stat"><h2>10+</h2><p>Expert Trainers</p></div>
+    <div class="stat"><h2>24/7</h2><p>Fitness Access</p></div>
+    <div class="stat"><h2>100%</h2><p>Motivation</p></div>
+</div>
+
+<section id="workouts">
+    <div class="section-head">
+        <small>OUR PROGRAMS</small>
+        <h2>Find Your <span>Workout</span></h2>
+        <p>Choose your favourite fitness activity.</p>
+    </div>
+
+    <div class="workout-grid" id="workoutGrid">
+        <div class="card">
+            <img src="./GymMate Fitness_files/photo-1583454110551-21f2fa2afe61" alt="Strength Training">
+            <div class="card-body">
+                <span class="label">Beginner</span>
+                <h3>Strength Training</h3>
+                <p>Explore resistance exercises and build strength gradually.</p>
+                <button class="btn" onclick="chooseWorkout(0)">
+                    Select Workout →
+                </button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <img src="./GymMate Fitness_files/photo-1538805060514-97d9cc17730c" alt="Cardio Fitness">
+            <div class="card-body">
+                <span class="label">All Levels</span>
+                <h3>Cardio Fitness</h3>
+                <p>Enjoy walking, cycling and aerobic activities.</p>
+                <button class="btn" onclick="chooseWorkout(1)">
+                    Select Workout →
+                </button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <img src="./GymMate Fitness_files/photo-1544367567-0f2fcb009e0b" alt="Yoga &amp; Relaxation">
+            <div class="card-body">
+                <span class="label">All Levels</span>
+                <h3>Yoga &amp; Relaxation</h3>
+                <p>Explore stretching, balance and relaxation.</p>
+                <button class="btn" onclick="chooseWorkout(2)">
+                    Select Workout →
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard" id="dashboard">
+    <div class="section-head">
+        <small>YOUR PERSONAL SPACE</small>
+        <h2>Fitness <span>Dashboard</span></h2>
+        <p>Manage your activity and daily habits.</p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="panel">
+            <h3>⏱️ <span>Workout Timer</span></h3>
+            <div class="timer">
+                <p>SESSION TIME</p>
+                <h2 id="timer">00:00</h2>
+                <button class="btn" onclick="startTimer()">Start</button>
+                <button class="btn" onclick="pauseTimer()">Pause</button>
+                <button class="btn" onclick="resetTimer()">Reset</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>💧 <span>Water Tracker</span></h3>
+            <p style="color:var(--muted);font-size:12px;text-align:center">Track your water intake.</p>
+            <div class="water-count"><span id="water">1</span> / 8</div>
+            <div class="water-buttons">
+                <button class="btn" onclick="addWater()">+ Add</button>
+                <button class="btn" onclick="removeWater()">− Remove</button>
+            </div>
+            <p style="font-size:11px;color:var(--muted);margin-top:15px">Illustrative daily tracker, not a universal hydration target.</p>
+        </div>
+
+        <div class="panel">
+            <h3>✓ <span>Daily Habits</span></h3>
+            <div class="habit"><input type="checkbox" class="habit-check" id="h1"><label for="h1">Morning walk 🚶</label></div>
+            <div class="habit"><input type="checkbox" class="habit-check" id="h2"><label for="h2">Stretching 🧘</label></div>
+            <div class="habit"><input type="checkbox" class="habit-check" id="h3"><label for="h3">Regular hydration 💧</label></div>
+            <div class="habit"><input type="checkbox" class="habit-check" id="h4"><label for="h4">Enough rest 😴</label></div>
+            <p style="color:var(--green);font-size:12px;margin-top:20px">Completed: <span id="habitTotal">0</span>/4</p>
+        </div>
+
+        <div class="panel">
+            <h3>📈 <span>Workout Activity</span></h3>
+            <div style="font-size:40px;color:var(--green);font-weight:900" id="workoutTotal">4</div>
+            <p style="color:var(--muted);font-size:12px">Workouts completed</p>
+            <button class="btn" style="width:100%;margin-top:25px" onclick="completeWorkout()">✓ Complete Workout</button>
+        </div>
+
+        <div class="panel" style="grid-column:span 2" id="activityPanel">
+            <h3>🏆 <span>Current Activity</span></h3>
+            <div id="activityContent">
+        <img class="activity-image" src="./GymMate Fitness_files/photo-1538805060514-97d9cc17730c" alt="Cardio Fitness">
+
+        <h2>Cardio Fitness</h2>
+
+        <div class="activity-details">
+            <span>⏱ 25 Minutes</span>
+            <span>⭐ All Levels</span>
+        </div>
+
+        <p style="color:var(--muted);font-size:12px">
+            Enjoy walking, cycling and aerobic activities.
+        </p>
+
+        <div class="activity-status" id="activityStatus">
+            Ready to start
+        </div>
+
+        <div class="activity-actions">
+            <button class="btn" onclick="startSelected()">▶ Start</button>
+            <button class="btn" onclick="pauseSelected()">Ⅱ Pause</button>
+            <button class="btn" onclick="finishSelected()">✓ Complete</button>
+        </div>
+    </div>
+        </div>
+
+        <div class="panel" style="grid-column:span 3">
+            <h3>📋 <span>Workout History</span></h3>
+            <div id="history" style="font-size:12px;color:var(--muted)">
+            <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+                <strong style="color:var(--text)">Cardio Fitness</strong>
+                <br>30/10/2026 · 00:01
+            </div>
+        
+            <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+                <strong style="color:var(--text)">Cardio Fitness</strong>
+                <br>30/10/2026 · 00:06
+            </div>
+        </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="trainers">
+    <div class="section-head">
+        <small>MEET OUR TEAM</small>
+        <h2>Our Expert <span>Trainers</span></h2>
+    </div>
+    <div class="trainer-grid">
+        <div class="card">
+            <img src="./GymMate Fitness_files/photo-1567013127542-490d757e51fc">
+            <div class="card-body"><h3>Strength Coach</h3><p>Strength and resistance training</p></div>
+        </div>
+        <div class="card">
+            <img src="./GymMate Fitness_files/photo-1548690312-e3b507d8c110">
+            <div class="card-body"><h3>Yoga Coach</h3><p>Flexibility and mindful movement</p></div>
+        </div>
+        <div class="card">
+            <img src="./GymMate Fitness_files/photo-1581009146145-b5ef050c2e1e">
+            <div class="card-body"><h3>Fitness Coach</h3><p>General fitness guidance</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="pricing">
+    <div class="section-head">
+        <small>MEMBERSHIP</small>
+        <h2>Choose Your <span>Plan</span></h2>
+    </div>
+    <div class="price-grid">
+        <div class="card price-card">
+            <h3>Basic</h3><div class="price">₹499</div><p>Per Month</p>
+            <ul><li>✓ Basic workout plans</li><li>✓ Fitness dashboard</li><li>✓ Habit tracker</li></ul>
+            <button class="btn" onclick="selectPlan('Basic')">Choose Plan</button>
+        </div>
+        <div class="card price-card featured">
+            <span class="label">POPULAR</span>
+            <h3>Premium</h3><div class="price">₹999</div><p>Per Month</p>
+            <ul><li>✓ All workout plans</li><li>✓ Activity tracking</li><li>✓ Progress dashboard</li></ul>
+            <button class="btn" onclick="selectPlan('Premium')">Choose Plan</button>
+        </div>
+        <div class="card price-card">
+            <h3>Elite</h3><div class="price">₹1499</div><p>Per Month</p>
+            <ul><li>✓ Advanced programs</li><li>✓ Priority support</li><li>✓ Personal guidance</li></ul>
+            <button class="btn" onclick="selectPlan('Elite')">Choose Plan</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="section-head">
+        <small>COMMUNITY</small>
+        <h2>What People <span>Say</span></h2>
+    </div>
+    <div class="testimonials">
+        <div class="review"><div class="stars">★★★★★</div><p>"A simple way to organize my daily fitness routine."</p><h4>Alex Morgan</h4></div>
+        <div class="review"><div class="stars">★★★★★</div><p>"I like having workout tracking and habits in one place."</p><h4>Sarah Wilson</h4></div>
+        <div class="review"><div class="stars">★★★★★</div><p>"The dashboard makes my activity easier to follow."</p><h4>James Cooper</h4></div>
+    </div>
+    <p style="font-size:10px;color:var(--muted);margin-top:15px">Sample testimonials for demonstration.</p>
+</section>
+
+<section>
+    <div class="section-head">
+        <small>HAVE QUESTIONS?</small>
+        <h2>Frequently Asked <span>Questions</span></h2>
+    </div>
+    <div class="faq-item"><div class="faq-question" onclick="faq(this)">What is GymMate? <span>+</span></div><div class="faq-answer">GymMate is a fitness website with workout programs, habit tracking and activity tools.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="faq(this)">Can beginners use GymMate? <span>+</span></div><div class="faq-answer">Yes. It includes beginner-friendly activity ideas.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="faq(this)">Is my progress saved? <span>+</span></div><div class="faq-answer">Yes, selected activity data is saved in browser LocalStorage.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="faq(this)">Can I use this on mobile? <span>+</span></div><div class="faq-answer">Yes, the website is responsive.</div></div>
+</section>
+
+<footer id="contact">
+    <div class="footer-grid">
+        <div><h3>⚡ Gym<span style="color:var(--green)">Mate</span></h3><p>Your fitness companion. Explore workouts, build habits and stay active.</p></div>
+        <div><h3>Quick Links</h3><a href="http://127.0.0.1:5500/login%20page/gymmate.html#home">Home</a><a href="http://127.0.0.1:5500/login%20page/gymmate.html#workouts">Workouts</a><a href="http://127.0.0.1:5500/login%20page/gymmate.html#trainers">Trainers</a><a href="http://127.0.0.1:5500/login%20page/gymmate.html#pricing">Membership</a></div>
+        <div><h3>Contact</h3><p>hello@gymmate.example</p><p>Instagram | Facebook | YouTube</p></div>
+    </div>
+    <div class="copyright">© 2026 GymMate Fitness. All Rights Reserved.</div>
+</footer>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal()">×</button>
+        <div class="logo">Gym<span>Mate</span></div>
+        <h2 id="modalTitle">Welcome Back!</h2>
+        <p id="modalText">Login to your demo account.</p>
+        <form onsubmit="login(event)">
+            <input id="username" placeholder="Your Name" required="">
+            <input id="email" type="email" placeholder="Email Address" required="">
+            <input id="password" type="password" placeholder="Password (6+ characters)" required="" minlength="6">
+            <button class="btn" type="submit" id="submitBtn">Login</button>
+        </form>
+        <div class="switch" onclick="switchForm()" id="switchText">Don't have an account? Sign Up</div>
+    </div>
+</div>
+
+<script>
+
+// WORKOUT DATA
+const workouts = [
+    {
+        name:"Strength Training",
+        image:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600",
+        duration:"30 Minutes",
+        level:"Beginner",
+        description:"Explore resistance exercises and build strength gradually."
+    },
+    {
+        name:"Cardio Fitness",
+        image:"https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=600",
+        duration:"25 Minutes",
+        level:"All Levels",
+        description:"Enjoy walking, cycling and aerobic activities."
+    },
+    {
+        name:"Yoga & Relaxation",
+        image:"https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600",
+        duration:"20 Minutes",
+        level:"All Levels",
+        description:"Explore stretching, balance and relaxation."
+    }
+];
+
+// Render workout cards
+const workoutGrid = document.getElementById("workoutGrid");
+
+workouts.forEach((workout,index) => {
+    workoutGrid.innerHTML += `
+        <div class="card">
+            <img src="${workout.image}" alt="${workout.name}">
+            <div class="card-body">
+                <span class="label">${workout.level}</span>
+                <h3>${workout.name}</h3>
+                <p>${workout.description}</p>
+                <button class="btn" onclick="chooseWorkout(${index})">
+                    Select Workout →
+                </button>
+            </div>
+        </div>
+    `;
+});
+
+// RESTORE SELECTED WORKOUT
+let selectedIndex = Number(localStorage.getItem("gymSelected"));
+
+if(
+    localStorage.getItem("gymSelected") !== null &&
+    workouts[selectedIndex]
+) {
+    renderActivity();
+}
+
+// SELECT WORKOUT
+function chooseWorkout(index) {
+    selectedIndex = index;
+
+    localStorage.setItem("gymSelected",index);
+
+    renderActivity();
+
+    document.getElementById("dashboard").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+// DISPLAY CURRENT ACTIVITY
+function renderActivity() {
+    const w = workouts[selectedIndex];
+
+    document.getElementById("activityContent").innerHTML = `
+        <img class="activity-image" src="${w.image}" alt="${w.name}">
+
+        <h2>${w.name}</h2>
+
+        <div class="activity-details">
+            <span>⏱ ${w.duration}</span>
+            <span>⭐ ${w.level}</span>
+        </div>
+
+        <p style="color:var(--muted);font-size:12px">
+            ${w.description}
+        </p>
+
+        <div class="activity-status" id="activityStatus">
+            Ready to start
+        </div>
+
+        <div class="activity-actions">
+            <button class="btn" onclick="startSelected()">▶ Start</button>
+            <button class="btn" onclick="pauseSelected()">Ⅱ Pause</button>
+            <button class="btn" onclick="finishSelected()">✓ Complete</button>
+        </div>
+    `;
+}
+
+// CURRENT ACTIVITY TIMER
+let seconds = 0;
+let interval = null;
+let sessionRunning = false;
+
+function startSelected() {
+    if(selectedIndex === undefined || !workouts[selectedIndex]) {
+        alert("Please select a workout first!");
+        return;
+    }
+
+    if(interval) return;
+
+    sessionRunning = true;
+
+    document.getElementById("activityStatus").innerText =
+        "Workout in progress...";
+
+    interval = setInterval(() => {
+        seconds++;
+        showTimer();
+    },1000);
+}
+
+function pauseSelected() {
+    clearInterval(interval);
+    interval = null;
+    sessionRunning = false;
+
+    if(document.getElementById("activityStatus")) {
+        document.getElementById("activityStatus").innerText =
+            "Workout paused";
+    }
+}
+
+function finishSelected() {
+    if(selectedIndex === undefined || !workouts[selectedIndex]) {
+        alert("Please select a workout first!");
+        return;
+    }
+
+    pauseSelected();
+
+    if(seconds === 0) {
+        alert("Start your workout before completing it.");
+        return;
+    }
+
+    total++;
+    localStorage.setItem("gymTotal",total);
+
+    let history = JSON.parse(localStorage.getItem("gymHistory") || "[]");
+
+    history.unshift({
+        name:workouts[selectedIndex].name,
+        duration:formatTime(seconds),
+        date:new Date().toLocaleDateString()
+    });
+
+    localStorage.setItem("gymHistory",JSON.stringify(history));
+
+    updateProgress();
+    renderHistory();
+
+    alert("Workout completed and saved!");
+
+    seconds = 0;
+    showTimer();
+
+    document.getElementById("activityStatus").innerText =
+        "Workout completed! Great job.";
+}
+
+// WORKOUT COUNT
+let total = Number(localStorage.getItem("gymTotal")) || 0;
+
+function completeWorkout() {
+    if(selectedIndex === undefined || !workouts[selectedIndex]) {
+        alert("Please select a workout first!");
+        return;
+    }
+
+    total++;
+    localStorage.setItem("gymTotal",total);
+
+    let history = JSON.parse(localStorage.getItem("gymHistory") || "[]");
+
+    history.unshift({
+        name:workouts[selectedIndex].name,
+        duration:"Not timed",
+        date:new Date().toLocaleDateString()
+    });
+
+    localStorage.setItem("gymHistory",JSON.stringify(history));
+
+    updateProgress();
+    renderHistory();
+
+    alert("Workout recorded successfully!");
+}
+
+function updateProgress() {
+    document.getElementById("workoutTotal").innerText = total;
+}
+
+function renderHistory() {
+    let history = JSON.parse(localStorage.getItem("gymHistory") || "[]");
+
+    document.getElementById("history").innerHTML =
+        history.length ?
+        history.slice(0,10).map(item => `
+            <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+                <strong style="color:var(--text)">${item.name}</strong>
+                <br>${item.date} · ${item.duration}
+            </div>
+        `).join("") :
+        "No completed workouts yet.";
+}
+
+updateProgress();
+renderHistory();
+
+// GENERAL TIMER
+function formatTime(value) {
+    return String(Math.floor(value/60)).padStart(2,"0") + ":" +
+           String(value%60).padStart(2,"0");
+}
+
+function showTimer() {
+    document.getElementById("timer").innerText = formatTime(seconds);
+}
+
+function startTimer() {
+    if(interval) return;
+
+    interval = setInterval(() => {
+        seconds++;
+        showTimer();
+    },1000);
+}
+
+function pauseTimer() {
+    clearInterval(interval);
+    interval = null;
+}
+
+function resetTimer() {
+    pauseTimer();
+    seconds = 0;
+    showTimer();
+}
+
+// WATER
+let water = Number(localStorage.getItem("gymWater")) || 0;
+
+function updateWater() {
+    document.getElementById("water").innerText = water;
+    localStorage.setItem("gymWater",water);
+}
+
+function addWater() {
+    water++;
+    updateWater();
+}
+
+function removeWater() {
+    water = Math.max(0,water-1);
+    updateWater();
+}
+
+updateWater();
+
+// HABITS
+let checks = document.querySelectorAll(".habit-check");
+
+checks.forEach((check,i) => {
+    check.checked = localStorage.getItem("habit"+i) === "true";
+
+    check.addEventListener("change",function() {
+        localStorage.setItem("habit"+i,this.checked);
+        updateHabits();
+    });
+});
+
+function updateHabits() {
+    let count = [...checks].filter(c => c.checked).length;
+    document.getElementById("habitTotal").innerText = count;
+}
+
+updateHabits();
+
+// THEME
+function toggleTheme() {
+    document.body.classList.toggle("light");
+
+    localStorage.setItem(
+        "gymTheme",
+        document.body.classList.contains("light") ? "light" : "dark"
+    );
+}
+
+if(localStorage.getItem("gymTheme") === "light") {
+    document.body.classList.add("light");
+}
+
+// MOBILE MENU
+function toggleMenu() {
+    document.getElementById("nav").classList.toggle("show");
+}
+
+// FAQ
+function faq(element) {
+    let item = element.parentElement;
+    item.classList.toggle("open");
+
+    element.querySelector("span").innerText =
+        item.classList.contains("open") ? "−" : "+";
+}
+
+// MEMBERSHIP DEMO
+function selectPlan(plan) {
+    alert("You selected the "+plan+" plan. No payment has been made.");
+    openModal();
+}
+
+// LOGIN DEMO
+let isSignup = false;
+
+function openModal() {
+    document.getElementById("modal").style.display="flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display="none";
+}
+
+function switchForm() {
+    isSignup = !isSignup;
+
+    document.getElementById("modalTitle").innerText =
+        isSignup ? "Create Account" : "Welcome Back!";
+
+    document.getElementById("modalText").innerText =
+        isSignup ? "Join the GymMate community." : "Login to your demo account.";
+
+    document.getElementById("submitBtn").innerText =
+        isSignup ? "Sign Up" : "Login";
+
+    document.getElementById("switchText").innerText =
+        isSignup ? "Already have an account? Login" :
+        "Don't have an account? Sign Up";
+}
+
+function login(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("username").value;
+
+    localStorage.setItem("gymUser",name);
+
+    alert(
+        (isSignup ? "Demo signup successful!" : "Demo login successful!") +
+        "\nWelcome "+name+"!"
+    );
+
+    closeModal();
+}
+
+showTimer();
+
+</script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>
