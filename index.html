@@ -4,20 +4,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GymMate | Fitness Dashboard</title>
+<title>GymMate - Fitness Dashboard</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-:root{
-  --bg:#0b0e0c;
-  --card:#151a17;
-  --card2:#1c231e;
+:root {
+  --bg:#090d0a;
+  --card:#121a15;
+  --card2:#1b261e;
   --text:#f5f7f5;
-  --muted:#9aa49d;
+  --muted:#a0aaa2;
   --green:#b7ff5a;
-  --border:#29332c;
+  --border:#29372d;
 }
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -30,252 +31,435 @@ button{cursor:pointer}
 a{text-decoration:none;color:inherit}
 .container{width:min(1200px,92%);margin:auto}
 
+.btn{
+  background:var(--green);
+  color:#10160c;
+  border:0;
+  border-radius:9px;
+  padding:12px 19px;
+  font-weight:800;
+  transition:.2s;
+}
+.btn:hover{filter:brightness(.9);transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
 /* NAVBAR */
 nav{
-  position:sticky;top:0;z-index:100;
-  background:#0b0e0cf2;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#090d0af2;
   backdrop-filter:blur(15px);
   border-bottom:1px solid var(--border);
 }
 .nav-inner{
-  height:75px;display:flex;
-  align-items:center;justify-content:space-between;
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-.logo{font-size:25px;font-weight:800}
+.logo{font-size:27px;font-weight:800}
 .logo span{color:var(--green)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--muted);font-size:14px}
+.nav-links{display:flex;gap:27px}
+.nav-links a{font-size:14px;color:var(--muted)}
 .nav-links a:hover{color:var(--green)}
-.nav-actions{display:flex;gap:10px;align-items:center}
-.btn{
-  border:0;border-radius:10px;
-  padding:12px 18px;font-weight:700;
-  background:var(--green);color:#10150c;
+.nav-actions{display:flex;gap:10px}
+.menu-btn{
+  display:none;
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
 }
-.btn:hover{filter:brightness(.9)}
-.btn-outline{
-  background:transparent;color:var(--text);
-  border:1px solid var(--border);
-}
-.menu-btn{display:none;background:none;color:white;border:0;font-size:25px}
 
 /* HERO */
 .hero{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:45px;align-items:center;
-  padding:75px 0;
+  min-height:510px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:40px;
+  padding:65px 0;
 }
 .tag{
-  display:inline-block;color:var(--green);
-  background:#b7ff5a15;border:1px solid #b7ff5a35;
-  padding:8px 13px;border-radius:30px;
-  font-size:12px;margin-bottom:22px;
+  display:inline-block;
+  color:var(--green);
+  background:#b7ff5a16;
+  border:1px solid #b7ff5a35;
+  border-radius:30px;
+  padding:9px 14px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
 }
 .hero h1{
-  font-size:clamp(38px,5vw,65px);
-  line-height:1.08;margin-bottom:20px;
+  font-size:clamp(40px,5vw,66px);
+  line-height:1.08;
+  margin:22px 0;
 }
-.hero h1 span{color:var(--green)}
-.hero p{color:var(--muted);line-height:1.8;max-width:480px}
-.hero-buttons{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.hero-image{
-  height:430px;border-radius:25px;overflow:hidden;
-  position:relative;background:var(--card2);
+.green{color:var(--green)}
+.hero p{
+  color:var(--muted);
+  line-height:1.8;
+  max-width:480px;
 }
-.hero-image img{width:100%;height:100%;object-fit:cover}
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:27px;
+}
+.hero-visual{
+  height:390px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 70% 30%,#b7ff5a3b,transparent 35%),
+    linear-gradient(135deg,#26382a,#101812 70%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-visual .figure{
+  font-size:150px;
+  filter:drop-shadow(0 15px 30px #000);
+}
 .hero-label{
-  position:absolute;bottom:20px;left:20px;
-  background:#101510e8;padding:15px 18px;
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  background:#090d0ae8;
+  border:1px solid var(--border);
+  padding:15px;
   border-radius:12px;
 }
 
-/* GENERAL */
+/* SECTIONS */
 .section{padding:55px 0}
 .section-head{
-  display:flex;justify-content:space-between;
-  align-items:end;gap:15px;margin-bottom:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:27px;
+  gap:15px;
 }
 .section-head h2{font-size:30px}
-.section-head p{color:var(--muted);font-size:14px;margin-top:8px}
-.green{color:var(--green)}
-.muted{color:var(--muted)}
+.section-head p{
+  color:var(--muted);
+  margin-top:8px;
+  font-size:14px;
+}
 .grid{display:grid;gap:18px}
-.stats{grid-template-columns:repeat(4,1fr)}
 .card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:17px;padding:20px;
+  border-radius:17px;
+  padding:21px;
 }
-.stat-icon{font-size:23px;margin-bottom:15px}
-.stat-number{font-size:28px;font-weight:800}
-.stat-title{font-size:13px;color:var(--muted);margin-top:7px}
+
+/* DASHBOARD */
+.stats{grid-template-columns:repeat(4,1fr)}
+.stat-icon{font-size:25px;margin-bottom:14px}
+.stat-number{font-size:29px;font-weight:800}
+.stat-title{color:var(--muted);font-size:13px;margin-top:8px}
 
 /* WORKOUTS */
 .workout-grid{grid-template-columns:repeat(3,1fr)}
-.workout-card{
-  overflow:hidden;padding:0;transition:.25s;
+.workout-card{padding:0;overflow:hidden;transition:.25s}
+.workout-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--green);
 }
-.workout-card:hover{transform:translateY(-5px);border-color:var(--green)}
-.workout-card img{
-  width:100%;height:190px;object-fit:cover;display:block;
-  background:var(--card2);
+.workout-art{
+  height:190px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:75px;
+  background:linear-gradient(135deg,#253b29,#101811);
 }
+.art2{background:linear-gradient(135deg,#383020,#17150f)}
+.art3{background:linear-gradient(135deg,#263449,#101822)}
+.art4{background:linear-gradient(135deg,#472b22,#1c1310)}
+.art5{background:linear-gradient(135deg,#382b43,#17111c)}
+.art6{background:linear-gradient(135deg,#214044,#0e191b)}
 .workout-content{padding:18px}
-.workout-content h3{margin-bottom:9px}
-.workout-content p{font-size:13px;color:var(--muted);line-height:1.6}
+.workout-content h3{margin-bottom:10px}
+.workout-content p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
 .workout-meta{
-  display:flex;justify-content:space-between;
-  color:var(--muted);font-size:12px;margin:15px 0;
+  display:flex;
+  justify-content:space-between;
+  margin:15px 0;
+  color:var(--muted);
+  font-size:12px;
 }
 .workout-content button{width:100%}
 
-/* CURRENT ACTIVITY */
+/* ACTIVITY */
 .activity{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:25px;align-items:center;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  align-items:center;
 }
-.activity-image{
-  height:290px;border-radius:17px;overflow:hidden;
-  background:var(--card2);
+.activity-art{
+  min-height:280px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#263d2a,#101811);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:110px;
 }
-.activity-image img{width:100%;height:100%;object-fit:cover}
-.activity-details h3{font-size:26px;margin-bottom:12px}
-.activity-details p{color:var(--muted);line-height:1.7}
+.activity-details h3{font-size:26px;margin:17px 0 12px}
+.activity-details p{
+  color:var(--muted);
+  line-height:1.7;
+}
 .timer{
-  font-size:43px;font-weight:800;
-  color:var(--green);margin:22px 0;
+  font-size:45px;
+  font-weight:800;
+  color:var(--green);
+  margin:20px 0;
   font-variant-numeric:tabular-nums;
 }
-.activity-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.activity-buttons{display:flex;flex-wrap:wrap;gap:9px}
 
 /* TRACKERS */
 .tracker-grid{grid-template-columns:repeat(3,1fr)}
 .progress-track{
-  height:9px;background:#303a32;
-  border-radius:20px;overflow:hidden;margin:15px 0;
+  height:9px;
+  background:#303b32;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0;
 }
 .progress-fill{
-  height:100%;width:0%;
-  background:var(--green);border-radius:20px;
+  height:100%;
+  width:0;
+  background:var(--green);
+  border-radius:20px;
+  transition:.3s;
 }
-.water-count{font-size:30px;font-weight:800;margin:12px 0}
+.water-count{font-size:30px;font-weight:800;margin:15px 0}
 .habit-item{
-  display:flex;justify-content:space-between;
-  padding:13px 0;border-bottom:1px solid var(--border);
-  color:var(--muted);font-size:14px;
+  display:flex;
+  justify-content:space-between;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+  color:var(--muted);
+  font-size:14px;
 }
-.habit-item input{accent-color:var(--green);width:17px;height:17px}
+.habit-item input{accent-color:var(--green)}
 
 /* BMI */
 .bmi-box{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:25px;align-items:center;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
 }
 .field{margin:15px 0}
-.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
-.field input{
-  width:100%;padding:13px;border-radius:9px;
-  background:#0d120f;color:white;
-  border:1px solid var(--border);outline:none;
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:8px;
+}
+.field input,.modal-box input{
+  width:100%;
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#0b100c;
+  color:white;
+  outline:none;
 }
 .bmi-result{
-  background:var(--card2);border-radius:15px;
-  padding:25px;text-align:center;
+  background:var(--card2);
+  border-radius:15px;
+  padding:25px;
+  text-align:center;
 }
-.bmi-result strong{font-size:38px;color:var(--green)}
+.bmi-result strong{
+  display:block;
+  color:var(--green);
+  font-size:40px;
+  margin:15px 0;
+}
 
-/* TRAINERS */
+/* TRAINERS - NO EXTERNAL IMAGES */
 .trainer-grid{grid-template-columns:repeat(3,1fr)}
-.trainer-card img{
-  width:100%;height:220px;object-fit:cover;
-  border-radius:12px;margin-bottom:15px;
+.trainer-card{
+  padding:0;
+  overflow:hidden;
+  transition:.2s;
 }
-.trainer-card p{color:var(--muted);font-size:13px;margin-top:8px}
+.trainer-card:hover{border-color:var(--green)}
+.trainer-art{
+  height:280px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#243a29,#111912);
+}
+.trainer-art.two{background:linear-gradient(145deg,#333044,#17131f)}
+.trainer-art.three{background:linear-gradient(145deg,#3a3222,#19160f)}
+.trainer-person{
+  font-size:120px;
+  filter:drop-shadow(0 15px 20px #0008);
+  z-index:1;
+}
+.trainer-glow{
+  position:absolute;
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  background:#b7ff5a20;
+  filter:blur(20px);
+}
+.trainer-info{padding:20px}
+.trainer-info p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:8px;
+}
 
 /* PRICING */
 .price-grid{grid-template-columns:repeat(3,1fr)}
-.price-card h3{margin-bottom:12px}
-.price{font-size:35px;font-weight:800;margin:15px 0}
-.price-card ul{list-style:none;color:var(--muted);line-height:2.4;font-size:14px}
-.price-card button{width:100%;margin-top:20px}
+.price-card h3{margin:12px 0}
+.price{
+  font-size:35px;
+  font-weight:800;
+  margin:15px 0;
+}
+.price-card ul{
+  list-style:none;
+  color:var(--muted);
+  line-height:2.5;
+  font-size:14px;
+}
+.price-card button{width:100%;margin-top:18px}
 .featured{border-color:var(--green)}
 
 /* FAQ */
 details{
-  background:var(--card);padding:18px;
-  border:1px solid var(--border);border-radius:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:18px;
   margin:10px 0;
 }
 summary{cursor:pointer;font-weight:600}
-details p{color:var(--muted);font-size:14px;line-height:1.7;margin-top:12px}
+details p{
+  color:var(--muted);
+  line-height:1.7;
+  margin-top:12px;
+  font-size:14px;
+}
 
 /* MODAL */
 .modal{
-  display:none;position:fixed;inset:0;
-  background:#000b;z-index:300;
-  align-items:center;justify-content:center;padding:20px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:300;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 .modal-box{
-  width:min(400px,100%);background:var(--card);
-  padding:25px;border:1px solid var(--border);
-  border-radius:18px;position:relative;
+  position:relative;
+  width:min(400px,100%);
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:25px;
+  border-radius:18px;
 }
 .modal-box h2{margin-bottom:20px}
-.close{
-  position:absolute;right:17px;top:15px;
-  border:0;background:none;color:white;font-size:23px;
-}
-.modal-box input{
-  width:100%;padding:13px;margin:8px 0;
-  background:#0d120f;color:white;
-  border:1px solid var(--border);border-radius:9px;
-}
+.modal-box input{margin:8px 0}
 .modal-box .btn{width:100%;margin-top:12px}
-.switch-auth{text-align:center;color:var(--muted);font-size:13px;margin-top:17px}
+.close{
+  position:absolute;
+  right:17px;
+  top:13px;
+  border:0;
+  background:none;
+  color:white;
+  font-size:25px;
+}
+.switch-auth{
+  color:var(--muted);
+  text-align:center;
+  font-size:13px;
+  margin-top:17px;
+}
 .switch-auth span{color:var(--green);cursor:pointer}
 
 /* FOOTER */
 footer{
   border-top:1px solid var(--border);
-  padding:35px 0;text-align:center;
-  color:var(--muted);font-size:13px;
+  text-align:center;
+  padding:35px 0;
+  color:var(--muted);
+  font-size:13px;
 }
-footer strong{color:var(--green)}
 
-/* LIGHT THEME */
+/* LIGHT MODE */
 body.light{
-  --bg:#f2f5f1;--card:#fff;--card2:#e8eee7;
-  --text:#182019;--muted:#667269;--border:#dce4dc;
+  --bg:#f2f5f1;
+  --card:#fff;
+  --card2:#e8eee7;
+  --text:#182019;
+  --muted:#667269;
+  --border:#dce4dc;
 }
 body.light nav{background:#f2f5f1ed}
-body.light .field input,body.light .modal-box input{color:#182019;background:#fff}
-body.light .menu-btn{color:#182019}
-body.light .close{color:#182019}
+body.light .menu-btn,body.light .close{color:#182019}
+body.light .field input,body.light .modal-box input{
+  background:white;color:#182019;
+}
 
 /* MOBILE RESPONSIVE */
 @media(max-width:850px){
   .nav-links{
-    display:none;position:absolute;top:75px;left:0;
-    width:100%;padding:22px;background:var(--card);
-    flex-direction:column;align-items:flex-start;
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    padding:22px;
+    background:var(--card);
+    flex-direction:column;
     border-bottom:1px solid var(--border);
   }
   .nav-links.show{display:flex}
   .menu-btn{display:block}
   .hero{grid-template-columns:1fr;padding:45px 0}
-  .hero-image{height:330px}
+  .hero-visual{height:320px}
   .stats{grid-template-columns:repeat(2,1fr)}
   .workout-grid,.trainer-grid{grid-template-columns:repeat(2,1fr)}
   .tracker-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:560px){
   .nav-inner{height:65px}
-  .logo{font-size:21px}
   .nav-links{top:65px}
-  .nav-actions .btn{padding:9px 11px;font-size:12px}
-  .hero{gap:25px;padding:35px 0}
-  .hero h1{font-size:39px}
-  .hero-image{height:260px}
+  .logo{font-size:22px}
+  .nav-actions .btn{padding:9px 12px;font-size:12px}
+  .hero h1{font-size:40px}
+  .hero-visual{height:260px}
+  .hero-visual .figure{font-size:115px}
   .section{padding:38px 0}
   .section-head{align-items:flex-start;flex-direction:column}
   .section-head h2{font-size:25px}
@@ -285,12 +469,10 @@ body.light .close{color:#182019}
   .workout-grid,.trainer-grid,.tracker-grid,.price-grid{
     grid-template-columns:1fr;
   }
-  .workout-card img{height:210px}
   .activity,.bmi-box{grid-template-columns:1fr}
-  .activity-image{height:220px}
+  .activity-art{min-height:210px}
   .timer{font-size:37px}
   .activity-buttons button{flex:1}
-  .section-head .btn{width:100%}
 }
 </style>
 </head>
@@ -299,7 +481,7 @@ body.light .close{color:#182019}
 
 <nav>
  <div class="container nav-inner">
-  <a class="logo" href="#">Gym<span>Mate.</span></a>
+  <a class="logo" href="#home">Gym<span>Mate.</span></a>
 
   <div class="nav-links" id="navLinks">
    <a href="#home">Home</a>
@@ -307,11 +489,12 @@ body.light .close{color:#182019}
    <a href="#dashboard">Dashboard</a>
    <a href="#trainers">Trainers</a>
    <a href="#pricing">Pricing</a>
+   <a href="#contact">Contact</a>
   </div>
 
   <div class="nav-actions">
-   <button class="btn btn-outline" onclick="toggleTheme()">◐</button>
-   <button class="btn" onclick="openModal()">Login</button>
+   <button class="btn btn-outline" onclick="toggleTheme()">☀️</button>
+   <button class="btn" onclick="openModal()">Login / Join</button>
    <button class="menu-btn" onclick="toggleMenu()">☰</button>
   </div>
  </div>
@@ -319,11 +502,11 @@ body.light .close{color:#182019}
 
 <main class="container">
 
-<!-- HERO -->
+<!-- HOME -->
 <section class="hero" id="home">
  <div>
   <span class="tag">YOUR FITNESS JOURNEY STARTS HERE</span>
-  <h1>Build Your <span>Stronger</span> Self.</h1>
+  <h1>Build Your <span class="green">Stronger</span> Self.</h1>
   <p>
    Train smarter, stay consistent and track your fitness journey
    with GymMate. Your personal fitness companion.
@@ -334,14 +517,13 @@ body.light .close{color:#182019}
   </div>
  </div>
 
- <div class="hero-image">
-  <img
-   src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85"
-   alt="Modern gym"
-   onerror="this.style.display='none'">
+ <div class="hero-visual">
+  <div class="figure">🏋️</div>
   <div class="hero-label">
    <strong>Stay Strong. Stay Consistent.</strong>
-   <p class="muted" style="margin-top:5px;font-size:12px">One day at a time.</p>
+   <p style="color:#a0aaa2;font-size:12px;margin-top:5px">
+    One day at a time.
+   </p>
   </div>
  </div>
 </section>
@@ -358,22 +540,25 @@ body.light .close{color:#182019}
  <div class="grid stats">
   <div class="card">
    <div class="stat-icon">🔥</div>
-   <div class="stat-number" id="streak">0</div>
+   <div class="stat-number" id="completedCount">0</div>
    <div class="stat-title">Completed Workouts</div>
   </div>
+
   <div class="card">
    <div class="stat-icon">⏱️</div>
-   <div class="stat-number" id="totalTime">0</div>
+   <div class="stat-number" id="totalMinutes">0</div>
    <div class="stat-title">Workout Minutes</div>
   </div>
+
   <div class="card">
    <div class="stat-icon">💧</div>
    <div class="stat-number" id="waterStat">0/8</div>
    <div class="stat-title">Water Glasses</div>
   </div>
+
   <div class="card">
    <div class="stat-icon">🏆</div>
-   <div class="stat-number" id="completion">0%</div>
+   <div class="stat-number" id="habitPercent">0%</div>
    <div class="stat-title">Daily Habits</div>
   </div>
  </div>
@@ -384,7 +569,7 @@ body.light .close{color:#182019}
  <div class="section-head">
   <div>
    <h2>Choose Your <span class="green">Workout</span></h2>
-   <p>Find a workout that matches your goals.</p>
+   <p>Find a workout that matches your interests.</p>
   </div>
  </div>
 
@@ -401,17 +586,15 @@ body.light .close{color:#182019}
  </div>
 
  <div class="card activity">
-  <div class="activity-image">
-   <img id="activityImg"
-    src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=85"
-    alt="Selected workout">
-  </div>
+  <div class="activity-art" id="activityArt">🏋️</div>
 
   <div class="activity-details">
    <span class="tag">YOUR SELECTED WORKOUT</span>
    <h3 id="activityName">No workout selected</h3>
-   <p id="activityDescription">Choose any workout from the workout section to get started.</p>
-   <div class="muted" id="activityMeta">Select a workout to begin.</div>
+   <p id="activityDescription">
+    Choose a workout to get started.
+   </p>
+   <p id="activityMeta" style="margin-top:10px">Select a workout.</p>
 
    <div class="timer" id="timer">00:00</div>
 
@@ -430,7 +613,7 @@ body.light .close{color:#182019}
  <div class="section-head">
   <div>
    <h2>Daily <span class="green">Trackers</span></h2>
-   <p>Small daily habits make a difference.</p>
+   <p>Build healthy everyday habits.</p>
   </div>
  </div>
 
@@ -441,7 +624,9 @@ body.light .close{color:#182019}
    <div class="progress-track">
     <div class="progress-fill" id="waterProgress"></div>
    </div>
-   <p class="muted" style="font-size:13px;margin-bottom:15px">Track your water intake.</p>
+   <p style="color:var(--muted);font-size:13px;margin-bottom:15px">
+    Track your water intake.
+   </p>
    <button class="btn" onclick="addWater()">+ Add Glass</button>
    <button class="btn btn-outline" onclick="removeWater()">− Remove</button>
   </div>
@@ -467,9 +652,11 @@ body.light .close{color:#182019}
   </div>
 
   <div class="card">
-   <h3>📊 Weekly Progress</h3>
-   <div style="font-size:36px;font-weight:800;margin:20px 0" id="weeklyProgress">0</div>
-   <p class="muted" style="font-size:13px">Total workouts completed in this session of your tracker.</p>
+   <h3>📊 Workout Progress</h3>
+   <div class="water-count" id="weeklyProgress">0</div>
+   <p style="color:var(--muted);font-size:13px">
+    Total completed workouts.
+   </p>
    <div class="progress-track">
     <div class="progress-fill" id="weeklyBar"></div>
    </div>
@@ -483,7 +670,7 @@ body.light .close{color:#182019}
  <div class="section-head">
   <div>
    <h2>BMI <span class="green">Calculator</span></h2>
-   <p>Calculate BMI as a general health reference.</p>
+   <p>A general health screening tool.</p>
   </div>
  </div>
 
@@ -491,24 +678,26 @@ body.light .close{color:#182019}
   <div>
    <div class="field">
     <label for="height">Height (cm)</label>
-    <input id="height" type="number" placeholder="Enter height">
+    <input type="number" id="height" placeholder="Enter height">
    </div>
    <div class="field">
     <label for="weight">Weight (kg)</label>
-    <input id="weight" type="number" placeholder="Enter weight">
+    <input type="number" id="weight" placeholder="Enter weight">
    </div>
-   <button class="btn" onclick="calculateBMI()">Calculate</button>
+   <button class="btn" onclick="calculateBMI()">Calculate BMI</button>
   </div>
+
   <div class="bmi-result">
-   <p class="muted">Your BMI result</p>
+   <p style="color:var(--muted)">Your BMI result</p>
    <strong id="bmiValue">--</strong>
-   <p id="bmiMessage" class="muted" style="margin-top:12px">
-    Enter your details to calculate.
+   <p id="bmiMessage" style="color:var(--muted);font-size:13px">
+    Enter your details.
    </p>
   </div>
  </div>
- <p class="muted" style="font-size:12px;margin-top:12px">
-  BMI is a limited screening measure and is not a diagnosis. For teenagers, interpretation depends on age and sex-specific growth charts.
+
+ <p style="color:var(--muted);font-size:12px;margin-top:12px">
+  BMI alone cannot assess health. For teenagers, BMI needs age-specific interpretation.
  </p>
 </section>
 
@@ -516,27 +705,48 @@ body.light .close{color:#182019}
 <section class="section" id="trainers">
  <div class="section-head">
   <div>
-   <h2>Meet Our <span class="green">Trainers</span></h2>
-   <p>Get inspired to build healthy habits.</p>
+   <span class="tag">MEET OUR TEAM</span>
+   <h2 style="margin-top:15px">
+    Our Expert <span class="green">Trainers</span>
+   </h2>
   </div>
  </div>
 
  <div class="grid trainer-grid">
+
   <div class="card trainer-card">
-   <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=700&q=80" alt="Fitness trainer">
-   <h3>Alex Morgan</h3>
-   <p>Strength & Fitness</p>
+   <div class="trainer-art">
+    <div class="trainer-glow"></div>
+    <div class="trainer-person">🏋️‍♂️</div>
+   </div>
+   <div class="trainer-info">
+    <h3>Strength Coach</h3>
+    <p>Strength and resistance training</p>
+   </div>
   </div>
+
   <div class="card trainer-card">
-   <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=700&q=80" alt="Fitness trainer">
-   <h3>Sarah Wilson</h3>
-   <p>Yoga & Mobility</p>
+   <div class="trainer-art two">
+    <div class="trainer-glow"></div>
+    <div class="trainer-person">🧘‍♀️</div>
+   </div>
+   <div class="trainer-info">
+    <h3>Yoga Coach</h3>
+    <p>Flexibility and mindful movement</p>
+   </div>
   </div>
+
   <div class="card trainer-card">
-   <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80" alt="Fitness trainer">
-   <h3>David Lee</h3>
-   <p>Functional Training</p>
+   <div class="trainer-art three">
+    <div class="trainer-glow"></div>
+    <div class="trainer-person">💪</div>
+   </div>
+   <div class="trainer-info">
+    <h3>Fitness Coach</h3>
+    <p>General fitness guidance</p>
+   </div>
   </div>
+
  </div>
 </section>
 
@@ -564,7 +774,7 @@ body.light .close{color:#182019}
   <div class="card price-card featured">
    <span class="tag">POPULAR</span>
    <h3>Pro</h3>
-   <div class="price">₹499<span style="font-size:13px"> / month</span></div>
+   <div class="price">₹499 <small>/ month</small></div>
    <ul>
     <li>✓ All Basic features</li>
     <li>✓ Advanced progress</li>
@@ -575,7 +785,7 @@ body.light .close{color:#182019}
 
   <div class="card price-card">
    <h3>Premium</h3>
-   <div class="price">₹999<span style="font-size:13px"> / month</span></div>
+   <div class="price">₹999 <small>/ month</small></div>
    <ul>
     <li>✓ All Pro features</li>
     <li>✓ Personal guidance</li>
@@ -596,16 +806,29 @@ body.light .close{color:#182019}
 
  <details>
   <summary>Is GymMate beginner friendly?</summary>
-  <p>Yes. You can start with beginner-friendly workouts and gradually build consistency.</p>
+  <p>Yes. You can choose beginner-friendly workouts and build a consistent routine.</p>
  </details>
+
  <details>
   <summary>Can I use GymMate on mobile?</summary>
-  <p>Yes. The website layout is responsive and adjusts to smaller screens.</p>
+  <p>Yes. GymMate has a responsive layout for mobile screens and tablets.</p>
  </details>
+
  <details>
   <summary>Does GymMate save my progress?</summary>
-  <p>Progress is stored in your browser using LocalStorage.</p>
+  <p>Your browser stores workout progress using LocalStorage.</p>
  </details>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+ <div class="card" style="text-align:center;padding:35px">
+  <h2>Let's Get <span class="green">Stronger</span></h2>
+  <p style="color:var(--muted);margin:12px 0 20px">
+   Start building healthy habits with GymMate.
+  </p>
+  <a href="#workouts" class="btn">Start Your Journey</a>
+ </div>
 </section>
 
 </main>
@@ -623,89 +846,105 @@ body.light .close{color:#182019}
  <div class="modal-box">
   <button class="close" onclick="closeModal()">×</button>
   <h2 id="modalTitle">Welcome Back</h2>
+
   <input id="authName" type="text" placeholder="Your name" style="display:none">
   <input id="authEmail" type="email" placeholder="Email address">
   <input id="authPassword" type="password" placeholder="Password">
-  <button class="btn" onclick="authAction()" id="authButton">Login</button>
+
+  <button class="btn" id="authButton" onclick="authAction()">Login</button>
+
   <div class="switch-auth">
    <span id="switchText">Don't have an account? </span>
-   <span onclick="switchAuth()" id="switchButton">Sign up</span>
+   <span id="switchButton" onclick="switchAuth()">Sign up</span>
   </div>
  </div>
 </div>
 
 <script>
+
 // WORKOUT DATA
 const workouts = [
  {
   name:"Full Body Workout",
   duration:"30 min",
   level:"Beginner",
-  description:"A balanced full-body routine to help build a regular movement habit.",
-  image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=85"
+  icon:"🏋️",
+  art:"art1",
+  description:"A balanced full-body routine for everyday movement."
  },
  {
   name:"Strength Training",
   duration:"40 min",
   level:"Intermediate",
-  description:"Build strength with a structured resistance-training session.",
-  image:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85"
+  icon:"💪",
+  art:"art2",
+  description:"Build strength with a structured resistance routine."
  },
  {
   name:"Yoga & Stretching",
   duration:"20 min",
   level:"Beginner",
-  description:"Gentle movement and stretching to support flexibility and relaxation.",
-  image:"https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=85"
+  icon:"🧘",
+  art:"art3",
+  description:"Gentle movement and stretching for relaxation."
  },
  {
   name:"Cardio Session",
   duration:"25 min",
   level:"Beginner",
-  description:"An energizing cardio session that you can adapt to your comfort.",
-  image:"https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=900&q=85"
+  icon:"🏃",
+  art:"art4",
+  description:"An energizing cardio session at your own pace."
  },
  {
   name:"Core Workout",
   duration:"15 min",
   level:"Intermediate",
-  description:"A core-focused routine with controlled, comfortable movements.",
-  image:"https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=85"
+  icon:"🔥",
+  art:"art5",
+  description:"A controlled core-focused movement session."
  },
  {
   name:"Cycling",
   duration:"30 min",
   level:"Beginner",
-  description:"A cycling session to add enjoyable movement to your day.",
-  image:"https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?auto=format&fit=crop&w=900&q=85"
+  icon:"🚴",
+  art:"art6",
+  description:"Enjoyable cycling for daily movement."
  }
 ];
 
+// APP STATE
 let selectedWorkout = Number(localStorage.getItem("gymSelected") || 0);
 let seconds = 0;
 let timerInterval = null;
 let running = false;
+
 let water = Number(localStorage.getItem("gymWater") || 0);
 let completed = Number(localStorage.getItem("gymCompleted") || 0);
 let totalMinutes = Number(localStorage.getItem("gymMinutes") || 0);
 let isSignup = false;
 
-// RENDER WORKOUT CARDS
+// RENDER WORKOUTS
 function renderWorkouts(){
  const list = document.getElementById("workoutList");
 
  list.innerHTML = workouts.map((w,i)=>`
   <div class="card workout-card">
-   <img src="${w.image}" alt="${w.name}" loading="lazy"
-    onerror="this.style.display='none'">
+   <div class="workout-art ${w.art}">${w.icon}</div>
+
    <div class="workout-content">
     <h3>${w.name}</h3>
     <p>${w.description}</p>
+
     <div class="workout-meta">
      <span>⏱ ${w.duration}</span>
      <span>📊 ${w.level}</span>
     </div>
-    <button class="btn" onclick="chooseWorkout(${i})">Select Workout</button>
+
+    <button class="btn" onclick="chooseWorkout(${i})">
+     Select Workout
+    </button>
    </div>
   </div>
  `).join("");
@@ -713,15 +952,21 @@ function renderWorkouts(){
 
 // SELECT WORKOUT
 function chooseWorkout(index){
+ pauseWorkout();
+
  selectedWorkout = index;
  localStorage.setItem("gymSelected",index);
+
  seconds = 0;
- pauseWorkout();
+ updateTimer();
  renderActivity();
- document.getElementById("activity").scrollIntoView({behavior:"smooth"});
+
+ document.getElementById("activity").scrollIntoView({
+  behavior:"smooth"
+ });
 }
 
-// CURRENT ACTIVITY
+// RENDER ACTIVITY
 function renderActivity(){
  const w = workouts[selectedWorkout];
  if(!w) return;
@@ -729,22 +974,22 @@ function renderActivity(){
  document.getElementById("activityName").textContent = w.name;
  document.getElementById("activityDescription").textContent = w.description;
  document.getElementById("activityMeta").textContent =
-  w.duration + " • " + w.level;
- document.getElementById("activityImg").src = w.image;
- updateTimer();
+  w.duration+" • "+w.level;
+ document.getElementById("activityArt").textContent = w.icon;
 }
 
 // TIMER
 function updateTimer(){
  const min = Math.floor(seconds/60);
  const sec = seconds%60;
+
  document.getElementById("timer").textContent =
-  String(min).padStart(2,"0")+":"+String(sec).padStart(2,"0");
+  String(min).padStart(2,"0")+":"+
+  String(sec).padStart(2,"0");
 }
 
 function startWorkout(){
  if(running) return;
- if(!workouts[selectedWorkout]) return;
 
  running = true;
  document.getElementById("startBtn").textContent = "Running...";
@@ -769,14 +1014,12 @@ function resetWorkout(){
 }
 
 function completeWorkout(){
- if(!workouts[selectedWorkout]) return;
-
- pauseWorkout();
-
- if(seconds === 0){
-  alert("Start your workout timer before completing it.");
+ if(seconds < 1){
+  alert("Start your workout timer first.");
   return;
  }
+
+ pauseWorkout();
 
  completed++;
  totalMinutes += Math.floor(seconds/60);
@@ -788,13 +1031,13 @@ function completeWorkout(){
  updateTimer();
  updateDashboard();
 
- alert("Workout completed! Great job.");
+ alert("Workout completed successfully!");
 }
 
 // DASHBOARD
 function updateDashboard(){
- document.getElementById("streak").textContent = completed;
- document.getElementById("totalTime").textContent = totalMinutes;
+ document.getElementById("completedCount").textContent = completed;
+ document.getElementById("totalMinutes").textContent = totalMinutes;
  document.getElementById("weeklyProgress").textContent = completed;
  document.getElementById("weeklyBar").style.width =
   Math.min(completed/7*100,100)+"%";
@@ -806,8 +1049,9 @@ function updateWater(){
  document.getElementById("waterCount").textContent = water+" / 8";
  document.getElementById("waterProgress").style.width =
   Math.min(water/8*100,100)+"%";
- document.getElementById("waterStat").textContent = water+"/8";
+
  localStorage.setItem("gymWater",water);
+ updateDashboard();
 }
 
 function addWater(){
@@ -822,21 +1066,28 @@ function removeWater(){
 
 // HABITS
 function updateHabits(){
- const habits = ["habit1","habit2","habit3","habit4"];
- const done = habits.filter(id=>document.getElementById(id).checked).length;
- const percentage = Math.round(done/habits.length*100);
+ const ids = ["habit1","habit2","habit3","habit4"];
 
- document.getElementById("completion").textContent = percentage+"%";
+ const done = ids.filter(id=>
+  document.getElementById(id).checked
+ ).length;
 
- localStorage.setItem("gymHabits",
-  JSON.stringify(habits.map(id=>document.getElementById(id).checked)));
+ const percentage = Math.round(done/ids.length*100);
+
+ document.getElementById("habitPercent").textContent = percentage+"%";
+
+ localStorage.setItem("gymHabits",JSON.stringify(
+  ids.map(id=>document.getElementById(id).checked)
+ ));
 }
 
 function loadHabits(){
  const saved = JSON.parse(localStorage.getItem("gymHabits") || "[]");
+
  ["habit1","habit2","habit3","habit4"].forEach((id,i)=>{
   document.getElementById(id).checked = saved[i] || false;
  });
+
  updateHabits();
 }
 
@@ -846,21 +1097,25 @@ function calculateBMI(){
  const weight = Number(document.getElementById("weight").value);
 
  if(height<=0 || weight<=0){
-  alert("Please enter valid height and weight.");
+  alert("Please enter valid details.");
   return;
  }
 
  const bmi = weight/((height/100)**2);
+
  document.getElementById("bmiValue").textContent = bmi.toFixed(1);
  document.getElementById("bmiMessage").textContent =
-  "BMI is only a general screening measure. Teen BMI needs age-specific interpretation.";
+  "BMI is a general screening measure, not a diagnosis. Teen BMI requires age-specific interpretation.";
 }
 
 // THEME
 function toggleTheme(){
  document.body.classList.toggle("light");
- localStorage.setItem("gymTheme",
-  document.body.classList.contains("light")?"light":"dark");
+
+ localStorage.setItem(
+  "gymTheme",
+  document.body.classList.contains("light")?"light":"dark"
+ );
 }
 
 // MOBILE MENU
@@ -912,17 +1167,25 @@ function authAction(){
   return;
  }
 
- // Demo only: this is not secure authentication.
+ // Demo only: not secure authentication.
  if(isSignup){
-  localStorage.setItem("gymDemoUser",JSON.stringify({name,email,password}));
+  localStorage.setItem("gymDemoUser",JSON.stringify({
+   name:name,
+   email:email,
+   password:password
+  }));
+
   alert("Demo account created!");
  }else{
-  const user = JSON.parse(localStorage.getItem("gymDemoUser") || "null");
+  const user = JSON.parse(
+   localStorage.getItem("gymDemoUser") || "null"
+  );
 
   if(!user || user.email!==email || user.password!==password){
-   alert("No matching demo account. Please sign up first.");
+   alert("Account not found. Please sign up first.");
    return;
   }
+
   alert("Welcome back, "+user.name+"!");
  }
 
@@ -931,14 +1194,15 @@ function authAction(){
 
 // PRICING DEMO
 function choosePlan(plan){
- alert(plan+" plan selected. Payment is not connected in this demo.");
+ alert(plan+" plan selected. Payment is not connected.");
 }
 
-// RESET PROGRESS
+// RESET
 function resetProgress(){
- if(!confirm("Reset all workout progress?")) return;
+ if(!confirm("Reset your workout progress?")) return;
 
  pauseWorkout();
+
  completed = 0;
  totalMinutes = 0;
  seconds = 0;
@@ -953,9 +1217,15 @@ function resetProgress(){
 // INITIALIZE
 function init(){
  renderWorkouts();
+
+ if(!workouts[selectedWorkout]){
+  selectedWorkout = 0;
+ }
+
  renderActivity();
- updateDashboard();
+ updateTimer();
  updateWater();
+ updateDashboard();
  loadHabits();
 
  if(localStorage.getItem("gymTheme")==="light"){
@@ -964,7 +1234,7 @@ function init(){
 }
 
 init();
-</script>
 
+</script>
 </body>
 </html>
