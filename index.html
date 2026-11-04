@@ -467,7 +467,13 @@ function renderExercises(){
  const list=exercises.filter(e=>(category==="All"||e[2]===category)&&e[0].toLowerCase().includes(q));
  $("exerciseCount").textContent=list.length+" ACTIVITIES";
  $("exerciseList").innerHTML=list.map(e=>`<article class="card exercise-card"><div class="exercise-art">${e[1]}</div><div class="exercise-info"><h3>${e[0]}</h3><p>${e[4]}</p><div class="meta">${e[2]} · ${e[3]}</div><button class="btn" data-exercise="${e[0]}">Select activity</button></div></article>`).join("")||'<div class="muted">No activities found.</div>';
- $("exerciseList").querySelectorAll("[data-exercise]").forEach(b=>b.onclick=()=>selectExercise(b.dataset.exercise));
+$("exerciseList").onclick = function(event) {
+ const button = event.target.closest("[data-exercise]");
+
+ if (button) {
+  selectExercise(button.dataset.exercise);
+ }
+};
 }
 $("exerciseSearch").oninput=renderExercises;
 function selectExercise(name){
