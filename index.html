@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -226,29 +225,29 @@ input[type=checkbox]{accent-color:var(--lime)}
  <div class="section-head"><div><h2>Current activity</h2><p>Workout timer and session details</p></div></div>
  <div class="card activity-box">
   <div class="activity-visual" id="activityIcon">🌱</div>
-  <div><div class="eyebrow">YOUR SESSION</div><h2 id="activityName">Choose an exercise</h2><p class="muted" id="activityDesc"<div id="strengthOptions" style="display:none; margin:15px 0;">
- <div class="card">
-  <h3>Strength Set Tracker 💪</h3>
-
-  <div class="grid two-col">
-   <div class="field">
-    <label>Number of Sets</label>
-    <input id="plannedSets" type="number" min="1" max="5" value="2">
+  <div>
+   <div class="eyebrow">YOUR SESSION</div>
+   <h2 id="activityName">Choose an exercise</h2>
+   <p class="muted" id="activityDesc">Select an activity from the exercise library.</p>
+   
+   <div id="strengthOptions" style="display:none; margin:15px 0;">
+    <div class="card" style="background:var(--panel2);">
+     <h3>Strength Set Tracker 💪</h3>
+     <div class="grid two-col">
+      <div class="field">
+       <label>Number of Sets</label>
+       <input id="plannedSets" type="number" min="1" max="5" value="2">
+      </div>
+      <div class="field">
+       <label>Reps per Set</label>
+       <input id="plannedReps" type="number" min="1" max="20" value="8">
+      </div>
+     </div>
+     <p id="setProgress" style="font-size:11px; margin-top:8px;">Completed sets: 0 / 2</p>
+     <button class="btn" id="completeSetBtn" type="button" style="width:100%; margin-top:5px;">Mark Set Complete</button>
+    </div>
    </div>
 
-   <div class="field">
-    <label>Reps per Set</label>
-    <input id="plannedReps" type="number" min="1" max="20" value="8">
-   </div>
-  </div>
-
-  <p id="setProgress">Completed sets: 0 / 2</p>
-
-  <button class="btn" id="completeSetBtn" type="button">
-   Mark Set Complete
-  </button>
- </div>
-</div>>Select an activity from the exercise library.</p>
    <div class="timer" id="timer">00:00</div>
    <div class="button-row"><button class="btn" id="startBtn">Start</button><button class="btn ghost" id="pauseBtn">Pause</button><button class="btn ghost" id="resetBtn">Reset</button><button class="btn ghost" id="completeBtn">Complete</button></div>
    <p class="note" id="sessionStatus">Your completed sessions will appear in progress.</p>
@@ -279,54 +278,49 @@ input[type=checkbox]{accent-color:var(--lime)}
   </div>
   <div class="progress"><span id="habitProgress"></span></div>
  </div>
-</section><section class="section" id="nutrition">
+</section>
+
+<section class="section" id="nutrition">
  <div class="section-head">
   <div>
    <h2>Daily Nutrition Suggestions 🥗</h2>
    <p>Simple food ideas for a healthy daily routine</p>
   </div>
  </div>
-
  <div class="grid two-col">
-
   <div class="card">
    <h3>🥛 Milk</h3>
    <p>Milk provides calcium and protein that support healthy bones and muscles.</p>
    <p><b>Suggestion:</b> Include a glass of milk in your daily routine if it suits you.</p>
   </div>
-
   <div class="card">
    <h3>🍌 Banana</h3>
    <p>Banana provides energy, potassium and fibre.</p>
    <p><b>Suggestion:</b> You can have a banana as a snack.</p>
   </div>
-
   <div class="card">
    <h3>🥚 Eggs</h3>
    <p>Eggs are a source of protein and other nutrients.</p>
    <p><b>Suggestion:</b> Include eggs in your meals if you eat them.</p>
   </div>
-
   <div class="card">
    <h3>🍎 Fruits</h3>
    <p>Fruits provide vitamins, minerals and fibre.</p>
    <p><b>Suggestion:</b> Eat a variety of seasonal fruits.</p>
   </div>
-
   <div class="card">
    <h3>🥜 Dry Fruits</h3>
    <p>Nuts provide healthy fats, protein and energy.</p>
    <p><b>Suggestion:</b> Have a small handful as a snack.</p>
   </div>
-
   <div class="card">
    <h3>💧 Water</h3>
    <p>Water helps your body stay hydrated.</p>
    <p><b>Suggestion:</b> Drink water regularly throughout the day.</p>
   </div>
-
  </div>
 </section>
+
 <footer class="footer">gym<span style="color:var(--lime)">mate.</span> · Move at your own pace.</footer>
 </main>
 </div>
@@ -347,20 +341,20 @@ let currentUser=localStorage.getItem("gm-current-user");
 let authMode="login";
 let data={};
 let selected=null,seconds=0,timer=null;
- let completedSets=0;
+let completedSets=0;
 let category="All",sensorOn=false,lastStepTime=0,stepCount=0;
 
 const exercises=[
  ["Walking","🚶","Cardio","Easy","A relaxed walk at a comfortable pace."],
  ["Jogging","🏃","Cardio","Moderate","A light jog adjusted to your comfort."],
  ["Cycling","🚴","Cardio","Moderate","A steady cycling session."],
-["Jumping Jacks","🤸","Cardio","Moderate","A full-body cardio exercise involving coordinated arm and leg movements."],
+ ["Jumping Jacks","🤸","Cardio","Moderate","A full-body cardio exercise involving coordinated arm and leg movements."],
  ["Yoga","🧘","Mind & body","Easy","Gentle poses, breathing and balance."],
  ["Stretching","🤸","Mind & body","Easy","Gentle stretches for comfortable mobility."],
  ["Breathing","🌬️","Mind & body","Easy","A quiet moment for calm breathing."],
  ["Squats","🏋️","Strength","Moderate","Controlled bodyweight movement."],
-["Push-ups","💪","Strength","Moderate","A bodyweight exercise that works the chest, shoulders and arms."],
-["Bicep Curls","💪","Strength","Moderate","An arm exercise that works the biceps muscles."],
+ ["Push-ups","💪","Strength","Moderate","A bodyweight exercise that works the chest, shoulders and arms."],
+ ["Bicep Curls","💪","Strength","Moderate","An arm exercise that works the biceps muscles."],
  ["Plank","🧍","Strength","Moderate","A core stability exercise."],
  ["Cool down","🌿","Mind & body","Easy","Slow down and relax after activity."]
 ];
@@ -467,30 +461,26 @@ function renderExercises(){
  const list=exercises.filter(e=>(category==="All"||e[2]===category)&&e[0].toLowerCase().includes(q));
  $("exerciseCount").textContent=list.length+" ACTIVITIES";
  $("exerciseList").innerHTML=list.map(e=>`<article class="card exercise-card"><div class="exercise-art">${e[1]}</div><div class="exercise-info"><h3>${e[0]}</h3><p>${e[4]}</p><div class="meta">${e[2]} · ${e[3]}</div><button class="btn" data-exercise="${e[0]}">Select activity</button></div></article>`).join("")||'<div class="muted">No activities found.</div>';
-$("exerciseList").onclick = function(event) {
- const button = event.target.closest("[data-exercise]");
-
- if (button) {
-  selectExercise(button.dataset.exercise);
- }
-};
 }
+$("exerciseList").onclick=function(event){
+ const button=event.target.closest("[data-exercise]");
+ if(button){selectExercise(button.dataset.exercise);}
+};
 $("exerciseSearch").oninput=renderExercises;
+
 function selectExercise(name){
  selected=exercises.find(e=>e[0]===name);
  completedSets=0;
-
-$("strengthOptions").style.display =
- selected[2]==="Strength" ? "block" : "none";
-
-$("setProgress").textContent =
- "Completed sets: 0 / " + $("plannedSets").value;
+ $("strengthOptions").style.display=(selected[2]==="Strength"?"block":"none");
+ $("setProgress").textContent="Completed sets: 0 / "+$("plannedSets").value;
  pauseTimer();seconds=0;showTimer();
- $("activityIcon").textContent=selected[1];$("activityName").textContent=selected[0];
+ $("activityIcon").textContent=selected[1];
+ $("activityName").textContent=selected[0];
  $("activityDesc").textContent=selected[4];
  $("sessionStatus").textContent="Selected: "+selected[0];
  $("activity").scrollIntoView({behavior:"smooth"});
 }
+
 function showTimer(){
  $("timer").textContent=String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0");
 }
@@ -510,7 +500,6 @@ function completeSession(){
  pauseTimer();
  const mins=Math.max(1,Math.round(seconds/60));
  const d=day();d.workouts++;d.minutes+=mins;
- // A broad time-based estimate only; it is not a measured calorie value.
  d.calories+=Math.round(mins*3);
  data.history[today()]=d;
  saveData();refresh();
@@ -522,33 +511,16 @@ $("pauseBtn").onclick=pauseTimer;
 $("resetBtn").onclick=resetTimer;
 $("completeBtn").onclick=completeSession;
 
- $("completeSetBtn").onclick=()=>{
-
- if(!selected || selected[2]!=="Strength") return;
-
- const sets=Math.max(1,Math.min(5,
-  Number($("plannedSets").value)||1));
-
- const reps=Math.max(1,Math.min(20,
-  Number($("plannedReps").value)||1));
-
+$("completeSetBtn").onclick=()=>{
+ if(!selected||selected[2]!=="Strength")return;
+ const sets=Math.max(1,Math.min(5,Number($("plannedSets").value)||1));
+ const reps=Math.max(1,Math.min(20,Number($("plannedReps").value)||1));
  $("plannedSets").value=sets;
  $("plannedReps").value=reps;
-
- if(completedSets>=sets){
-  toast("All planned sets completed.");
-  return;
- }
-
+ if(completedSets>=sets){toast("All planned sets completed.");return;}
  completedSets++;
-
- $("setProgress").textContent =
-  "Completed sets: " + completedSets + " / " + sets +
-  " (" + reps + " reps each)";
-
- if(completedSets===sets){
-  toast("All sets completed!");
- }
+ $("setProgress").textContent="Completed sets: "+completedSets+" / "+sets+" ("+reps+" reps each)";
+ if(completedSets===sets){toast("All sets completed!");}
 };
 
 function renderCharts(){
@@ -595,53 +567,51 @@ function updateHabits(){
  $("habitPercent").textContent=p+"% DONE";$("habitProgress").style.width=p+"%";
 }
 
-// Device motion step estimate. A browser page cannot read the phone's
-// hardware step counter, so this estimates walking-like motion patterns.
+// Device motion step estimate
 async function startSensor(){
  if(!("DeviceMotionEvent" in window)){toast("Motion sensor is not supported here.");return}
  try{
   if(typeof DeviceMotionEvent.requestPermission==="function"){
-   const permission=await DeviceMotionEvent.requestPermission();
-   if(permission!=="granted"){toast("Motion permission was not granted.");return}
+   const res=await DeviceMotionEvent.requestPermission();
+   if(res!=="granted"){toast("Permission denied.");return}
   }
-  if(sensorOn)return;
-  sensorOn=true;lastStepTime=0;stepCount=0;
-  window.addEventListener("devicemotion",motionHandler);
-  $("stepStatus").textContent="Motion sensor active while this page stays open.";
-  toast("Motion sensor enabled.");
- }catch(e){toast("Could not enable motion sensor. Use HTTPS on a supported phone.");}
-}
-function motionHandler(event){
- if(!sensorOn)return;
- const a=event.accelerationIncludingGravity;
- if(!a)return;
- const magnitude=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);
- const now=Date.now();
- if(magnitude>13.5&&now-lastStepTime>350){
-  lastStepTime=now;stepCount++;
-  // Update every detected motion step; this is only a rough estimate.
-  day().steps++;
-  if(stepCount%5===0){saveData();refresh()}
-  $("stepsValue").textContent=day().steps.toLocaleString();
+  window.addEventListener("devicemotion",handleMotion);
+  sensorOn=true;
+  $("stepStart").textContent="Sensor active";
+  $("stepStatus").textContent="Step sensor running.";
+  toast("Step sensor enabled!");
+ }catch(e){
+  toast("Could not start sensor.");
  }
 }
 function stopSensor(){
- sensorOn=false;window.removeEventListener("devicemotion",motionHandler);
- saveData();refresh();
- $("stepStatus").textContent="Sensor stopped. Motion estimates saved.";
+ if(!sensorOn)return;
+ window.removeEventListener("devicemotion",handleMotion);
+ sensorOn=false;
+ $("stepStart").textContent="Enable step sensor";
+ $("stepStatus").textContent="Sensor stopped.";
+}
+function handleMotion(e){
+ const acc=e.accelerationIncludingGravity;
+ if(!acc)return;
+ const total=Math.sqrt((acc.x||0)**2 + (acc.y||0)**2 + (acc.z||0)**2);
+ const now=Date.now();
+ if(total>12 && now-lastStepTime>350){
+  lastStepTime=now;
+  stepCount++;
+  day().steps=Math.max(day().steps,stepCount);
+  saveData();
+  refresh();
+ }
 }
 $("stepStart").onclick=startSensor;
 $("stepStop").onclick=stopSensor;
 
-if(currentUser&&users[currentUser]){
- $("authScreen").classList.add("hidden");$("app").classList.remove("hidden");
- data=users[currentUser].data||{history:{},habits:{},moods:{}};
- data.history??={};data.habits??={};data.moods??={};
- renderApp();
+if(currentUser){
+ login(currentUser);
 }else{
- currentUser=null;localStorage.removeItem("gm-current-user");authUI();
+ authUI();
 }
-window.addEventListener("beforeunload",()=>{pauseTimer();stopSensor();saveData()});
 </script>
 </body>
 </html>
